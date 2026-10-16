@@ -1,0 +1,19 @@
+# Ignore model files
+toxic_bert_model/
+
+# Ignore large model weight files
+*.pt
+*.safetensors
+
+# Python virtual environment
+venv/
+env/
+.env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
