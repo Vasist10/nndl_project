@@ -1,63 +1,64 @@
-# 🧠 Toxic Comment Detection System
+# 🧠 Hate Speech Detection System
 
-<a href="https://toxic-comment-detector-updated.onrender.com" target="_blank">
-  <img src="https://img.shields.io/badge/Live%20Demo-Visit-green?style=for-the-badge&logo=google-chrome" />
-</a>
 <a href="https://www.python.org/" target="_blank">
   <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python" />
 </a>
 <a href="https://flask.palletsprojects.com/" target="_blank">
   <img src="https://img.shields.io/badge/Backend-Flask-orange?style=for-the-badge&logo=flask" />
 </a>
-<a href="https://huggingface.co/sarkararnab/toxic_bert_model" target="_blank">
-  <img src="https://img.shields.io/badge/ML-BERT-yellow?style=for-the-badge&logo=huggingface" />
-</a>
+<img src="https://img.shields.io/badge/ML-BiLSTM-purple?style=for-the-badge" />
 
 ---
 
 ## 🔍 Overview
-The **Toxic Comment Detection System** is an **AI-powered tool** that identifies **toxic and hate comments** in real time.  
-It consists of:
 
-- 🌐 **Web App** for checking individual comments  
-- 🧩 **Chrome Extension** that **blurs toxic comments** on YouTube & Instagram  
-- 🤖 **Custom BERT model** fine-tuned for English toxic comment detection
+The **Hate Speech Detection System** is an AI-powered tool that identifies toxic and hate speech in text in real time. It uses a fine-tuned BERT model served through a Flask backend with a clean web UI.
 
----
+- 🌐 **Web App** — enter any text and get an instant toxicity prediction with confidence score
+- 🧩 **Chrome Extension** — automatically blurs toxic comments on YouTube & Instagram
+- 🤖 **BiLSTM model** — trained on the HateXplain dataset for multi-class hate speech detection
 
-## 🚀 Live Demo & Downloads
-
-### 🌐 **Try the Web App:**  
-🔗 <a href="https://toxic-comment-detector-updated.onrender.com" target="_blank" rel="noopener noreferrer">Toxic Comment Detector Live</a>
-
-### ▶️ **Complete Walkthrough (Youtube):**  
-🔗 <a href="https://www.youtube.com/watch?v=wv8dsj2tdGo" target="_blank" rel="noopener noreferrer">Check out this video</a>
-
-### 💻 **Download Chrome Extension ZIP:**  
-🔗 <a href="https://drive.google.com/file/d/1tlcMZA7iFqsEo9a8n_oIAsJvzbtq2OAp/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download Extension</a>
-
-🎥 **Chrome Extension Setup Tutorial (YouTube):**  
-🔗 <a href="https://www.youtube.com/watch?v=MnTMe5dBzf8" target="_blank" rel="noopener noreferrer">How to Install & Use the Extension</a>
+> **Note:** The app is not yet deployed. Follow the local setup instructions below to run it.
 
 ---
 
-## 🧩 How to Use the Chrome Extension Locally
+## 🛠️ Local Setup
 
-1. **Download** and **unzip** the extension file.  
-2. Open **Chrome** → go to `chrome://extensions/`.  
-3. Enable **Developer Mode** (top-right).  
-4. Click **Load Unpacked** and select the **unzipped folder**.  
-5. Visit **YouTube or Instagram** → Toxic comments will be **blurred automatically**.  
-6. Click **Show** to reveal hidden comments if needed.
+### Prerequisites
+- Python 3.10+
+- The model weights (`hate_model/model.pt` or `hate_model/model.safetensors`) — not included in this repo due to file size (~418 MB). Download them separately and place them in the `hate_model/` folder.
+
+### Steps
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Vasist10/nndl_project.git
+cd nndl_project
+
+# 2. Create and activate a virtual environment
+python -m venv venv
+venv\Scripts\activate      # Windows
+# source venv/bin/activate  # macOS/Linux
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Run the Flask app
+python app.py
+```
+
+Then open `http://localhost:5000` in your browser.
 
 ---
 
-## 🌟 Key Highlights
-- ✅ **Real-time** detection of toxic & hate comments  
-- ⚡ **Fine-tuned BERT model** hosted via Flask backend  
-- 🖥️ **Sleek and responsive UI** with probability scores  
-- 🔒 **Chrome Extension** automatically blurs toxic comments on social media  
-- 🌍 **Live & publicly accessible** via Render deployment  
+## 🧩 Chrome Extension Setup
+
+1. Download and unzip the extension file.
+2. Open Chrome and go to `chrome://extensions/`.
+3. Enable **Developer Mode** (top-right toggle).
+4. Click **Load Unpacked** and select the unzipped folder.
+5. Visit YouTube or Instagram — toxic comments will be blurred automatically.
+6. Click **Show** on any blurred comment to reveal it.
 
 ---
 
@@ -67,50 +68,41 @@ It consists of:
 ![Web App Screenshot](images/web-ui.jpg)
 
 ### 🧩 Chrome Extension in Action
-![Web App Screenshot](images/extension-demo.jpg)
+![Extension Screenshot](images/extension-demo.jpg)
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer             | Technology                                 |
-|-------------------|--------------------------------------------|
-| **Frontend**      | React.js, TailwindCSS, HTML                |
-| **Backend**       | Flask (Python)                             |
-| **ML Model**      | fine-tunned BERT (`transformers`)          |
-| **Browser Ext.**  | JavaScript, Manifest v3                    |
-| **Deployment**    | Render (Flask app), Hugging Face (Model)   |
+| Layer            | Technology                               |
+|------------------|------------------------------------------|
+| **Frontend**     | HTML, CSS, JavaScript                    |
+| **Backend**      | Flask (Python)                           |
+| **ML Model**     | BiLSTM (`PyTorch`)                       |
+| **Browser Ext.** | JavaScript, Manifest v3                  |
+| **Dataset**      | HateXplain                               |
 
 ---
 
-## 📖 Usage Guide
+## 📖 Usage
 
-### 🌍 Web App
+### Web App
 1. Enter any text or comment in the input box.
 2. Click **"Check Toxicity"**.
-3. Instantly see **prediction** (Toxic / Not Toxic) and **confidence score**.
+3. See the prediction (Toxic / Not Toxic) and confidence score instantly.
 
-### 🧩 Extension
+### Extension
 - Visit YouTube or Instagram.
-- Toxic comments will be blurred automatically.
-- You can also unhide the blurred comment on your wish.
+- Toxic comments are blurred automatically.
+- Click **Show** on any comment to unhide it.
 
 ---
 
 ## 📚 Acknowledgments
-- 🤗 **Hugging Face** for BERT model & transformers library  
-- 🐍 **Flask** for serving ML model as API  
-- ⚛️ **React.js & TailwindCSS** for the responsive frontend  
-- 🌐 **Google Chrome** for extension support  
+- 🤗 **Hugging Face** for the tokenizer and `transformers` library
+- 🐍 **Flask** for serving the ML model as an API
+- 📊 **HateXplain** dataset for model training
 
 ---
 
-## ⭐ Pro Tip
-> Blurring toxic comments while browsing makes the internet **a calmer place**.  
-> Give it a try and enjoy **clean social media feeds**! ✨
-
----
-
-### 🏆 Star this repo if you like it!  
-It helps more people discover this project 🚀
-
+### ⭐ Star this repo if you find it useful!
